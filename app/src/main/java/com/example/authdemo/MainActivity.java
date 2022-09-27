@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Btn;
     private ProgressBar progressbar;
     private FirebaseAuth mAuth;
+    private TextView ihave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +35,21 @@ public class MainActivity extends AppCompatActivity {
         passwordTextView = findViewById(R.id.passwd);
         Btn = findViewById(R.id.btnregister);
         progressbar = findViewById(R.id.progressbar);
+        ihave = findViewById(R.id.ihave);
 
         // Set on Click Listener on Registration button
         Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registerNewUser();
+            }
+        });
+
+        ihave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -85,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                             progressbar.setVisibility(View.GONE);
 
                             // if the user created intent to login activity
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            startActivity(intent);
 
                         }
                         else {
